@@ -1,0 +1,22 @@
+classdef logger < handle
+    properties
+        
+        headerBorder='=';
+        iStep=1;
+        nStep
+    end
+    
+    methods
+        function obj = logger(nStep)
+           obj.nStep=nStep; 
+            
+        end
+        function printStatus(obj,statusMsg)
+            disp(repmat(obj.headerBorder,1,length(statusMsg)+10))
+            fprintf('Step [%d/%d: %s\n',obj.iStep, obj.nStep,statusMsg)
+            disp(repmat(obj.headerBorder,1,length(statusMsg)+10))
+            obj.iStep=obj.iStep+1;
+        end
+    end
+    
+end
