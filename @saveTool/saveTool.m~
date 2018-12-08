@@ -1,8 +1,0 @@
-classdef saveTool < handle
-   properties
-       
-   end
-   methods
-       function saveTool
-   end
-end
