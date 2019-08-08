@@ -1,21 +1,21 @@
 function save_plot(save_filename,varargin)
 
-% only want 3 optional inputs at most
+% only want 4 optional inputs at most
 numvarargs = length(varargin);
-if numvarargs > 3
+if numvarargs > 4
     error('analysis:misc:save_plot:TooManyInputs', ...
-        'requires at most 2 optional inputs');
+        'requires at most 4 optional inputs');
 end
 
 % set defaults for optional inputs
-optargs = {true true true};
+optargs = {300 true true true};
 
 % now put these defaults into the valuesToUse cell array,
 % and overwrite the ones specified in varargin.
 optargs(1:numvarargs) = varargin;
 
 % Place optional args in memorable variable names
-[verbose, save_eps, save_fig] = optargs{:};
+[dpi, verbose, save_eps, save_fig] = optargs{:};
 
 
 if verbose
@@ -31,7 +31,8 @@ if save_eps
         disp('1: Saving .eps file')
     end
     formattype='-depsc';
-    print(save_filename,formattype)
+    dpi_setting=['-r' num2str(dpi)]
+    print(save_filename,formattype,dpi_setting)
 end
 if save_fig
     if verbose
